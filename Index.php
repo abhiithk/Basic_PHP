@@ -65,6 +65,10 @@
                   <div class="col-span-6 sm:col-span-3 lg:col-span-2">
                     <label for="postal_code" class="block text-sm font-medium text-gray-700">ZIP / Postal code</label>
                     <input type="text" name="postal_code" id="postal_code" autocomplete="postal_code" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+      </div>
+      <div class="col-span-6 sm:col-span-3">
+                    <label for="hobbie" class="block text-sm font-medium text-gray-700">Hobbies (Seperate using ,)</label>
+                    <input type="text" name="hobbies" id="hobbies" autocomplete="hobbie" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                   </div>
                   <div class="col-span-6 sm:col-span-3 lg:col-span-2">
                     <label for="country" class="block text-sm font-medium text-gray-700">Country</label>
@@ -72,14 +76,16 @@
                       <option value="1">India</option>
                       <option value="2">USA</option>
                       <option value="3">Canada</option>
+                      <br>
                     </select>
                   </div>
                 </div>
+               
                 <br>
                 <div>
                   <fieldset>
                     <div class="col-span-6 space-x-3 sm:col-span-3">
-                      <input id="sub" name="intrst" type="checkbox" class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
+                      <input id="sub" value="1" name="intrst" type="checkbox" class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
                       <label for="sub" class="font-medium text-gray-700 select-none">Interested in recieving Emails</label>
                     </div>
                   </fieldset>
@@ -132,12 +138,8 @@
             <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
               <dt class="text-sm font-medium text-gray-500">Mobile Number</dt>
               <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                <?php
-                if (strlen($_POST['mobile'] < 13)) {
+                <?php 
                   echo $_POST['mobile'];
-                } else {
-                  echo "Invalid Mobile Number";
-                }
                 ?></dd>
             </div>
             <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
@@ -148,14 +150,21 @@
             <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
               <dt class="text-sm font-medium text-gray-500">Postal Code</dt>
               <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"> <?php
-                                                                            if (strlen($_POST['postal_code'] < 7)) {
-                                                                              echo $_POST['postal_code'];
-                                                                            } else {
-                                                                              echo "Invalid ZIP";
-                                                                            }
-                                                                            ?>
+                                                                              echo $_POST['postal_code'];                  
+                                                                         ?>
               </dd>
               </dd>
+            </div>
+            <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
+              <dt class="text-sm font-medium text-gray-500">Hobbies</dt>
+              <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"> 
+                <?php $arr= (explode(",",$_POST['hobbies']));
+                foreach($arr as $i)
+                {
+                  echo $i . "<br />"; 
+                  }
+                ?>
+                </dd>
             </div>
             <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
               <dt class="text-sm font-medium text-gray-500">Country</dt>
@@ -165,11 +174,11 @@
                 ?>
               </dd>
               </dd><dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-              <?php if ($_POST['intrst'] ==='on') {
-              echo "Interested in recieving Mails";
+              <?php if ($_POST['intrst'] ==='1') {
+              echo "Interested in receiving Mails";
               }
               else{
-                echo "Not interested in receiving mails";
+                echo "Not interested in receiving Mails";
               } 
               ?> </dd>
 
