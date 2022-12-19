@@ -18,7 +18,7 @@
       <div class="md:col-span-1">
         <div class="px-4 sm:px-0">
           <h3 class="text-lg font-medium leading-6 text-gray-900">Personal Information</h3>
-          <p class="mt-1 text-sm text-gray-600">Enter your personal informations</p>
+          <p class="mt-1 text-sm text-gray-600">Enter your personal information</p>
         </div>
       </div>
       <?php
@@ -115,9 +115,9 @@
       <div class="overflow-hidden bg-white shadow sm:rounded-lg">
         <div class="px-4 py-5 sm:px-6">
           <h3 class="text-lg font-medium leading-6 text-gray-900">Applicant Information</h3>
-          <p class="mt-1 max-w-2xl text-sm text-gray-500">Personal details </p>
+          <p class="max-w-2xl mt-1 text-sm text-gray-500">Personal details </p>
         </div>
-        <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
+        <div class="px-4 py-5 border-t border-gray-200 sm:p-0">
           <dl class="sm:divide-y sm:divide-gray-200">
             <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
               <dt class="text-sm font-medium text-gray-500">Full name</dt>
@@ -158,10 +158,11 @@
             <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
               <dt class="text-sm font-medium text-gray-500">Hobbies</dt>
               <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"> 
-                <?php $arr= (explode(",",$_POST['hobbies']));
-                foreach($arr as $i)
+                <?php 
+                $arrHobbies= (explode(",", $_POST['hobbies']));
+                foreach($arrHobbies as $hobby)
                 {
-                  echo $i . "<br />"; 
+                  echo $hobby . "<br />"; 
                   }
                 ?>
                 </dd>
@@ -182,7 +183,7 @@
               } 
               ?> </dd>
 
-              <div class="border-t border-gray-200 px-4 py-5 sm:p-0"> </div>
+              <div class="px-4 py-5 border-t border-gray-200 sm:p-0"> </div>
               
             </div>
             </dl>
