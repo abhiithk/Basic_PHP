@@ -79,8 +79,8 @@
                 <div>
                   <fieldset>
                     <div class="col-span-6 space-x-3 sm:col-span-3">
-                      <input id="person-1" name="person-1" type="checkbox" class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
-                      <label for="person-1" class="font-medium text-gray-700 select-none">Interested in recieving Emails</label>
+                      <input id="sub" name="intrst" type="checkbox" class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
+                      <label for="sub" class="font-medium text-gray-700 select-none">Interested in recieving Emails</label>
                     </div>
                   </fieldset>
                 </div>
@@ -164,15 +164,22 @@
                 echo $countries[$_POST['country']];
                 ?>
               </dd>
-              </dd>
-              <div class="border-t border-gray-200 px-4 py-5 sm:p-0"> </div>
-            </div>
-          </dl>
+              </dd><dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+              <?php if ($_POST['intrst'] ==='on') {
+              echo "Interested in recieving Mails";
+              }
+              else{
+                echo "Not interested in receiving mails";
+              } 
+              ?> </dd>
 
+              <div class="border-t border-gray-200 px-4 py-5 sm:p-0"> </div>
+              
+            </div>
+            </dl>
           <a href="Index.php" class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"> Back </a>
         </div>
       </div>
-
     </div>
   <?php } ?>
   <script>
