@@ -70,6 +70,10 @@
                     <label for="hobbie" class="block text-sm font-medium text-gray-700">Hobbies (Seperate using ,)</label>
                     <input type="text" name="hobbies" id="hobbies" autocomplete="hobbie" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                   </div>
+                  <div class="col-span-6 sm:col-span-3">
+                    <label for="dob" class="block text-sm font-medium text-gray-700">Date Of Birth</label>
+                    <input type="date" name="dob" id="dob" autocomplete="hobbie" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                  </div>
                   <div class="col-span-6 sm:col-span-3 lg:col-span-2">
                     <label for="country" class="block text-sm font-medium text-gray-700">Country</label>
                     <select id="country" name="country" autocomplete="country-name" class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
@@ -144,7 +148,7 @@
             </div>
             <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
               <dt class="text-sm font-medium text-gray-500">Address</dt>
-              <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"><?php echo $_POST['street-address'] . ' ' . $_POST['city'] . ' ' . $_POST['region'];
+              <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"><?php echo $_POST['street_address'] . ' ' . $_POST['city'] . ' ' . $_POST['region'];
                                                                             ?></dd>
             </div>
             <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
@@ -164,6 +168,24 @@
                   echo $i . "<br />"; 
                   }
                 ?>
+                </dd>
+            </div>
+            <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
+              <dt class="text-sm font-medium text-gray-500">Date of Birth</dt>
+              <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"> 
+                <?php 
+                   echo date('d/F/Y',strtotime($_POST['dob']));
+                ?>
+                </dd>
+            </div>
+            <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
+              <dt class="text-sm font-medium text-gray-500">Age</dt>
+              <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"> 
+              <?php
+               $dob=$_POST['dob'];
+               $year = (date('Y') - date('Y', strtotime($dob)));  
+              echo "Your age is " . $year . " years.";
+                   ?>
                 </dd>
             </div>
             <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
