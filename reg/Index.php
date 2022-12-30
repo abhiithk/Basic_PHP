@@ -2,11 +2,11 @@
 <html lang="en">
 
 <head>
-  <title>Document</title>
+  <title>Home Page</title>
   <link href="../dist/output.css" rel="stylesheet">
 </head>
 
-<body class="bg-slate-100">
+<body class="bg-blue-300">
   <?php include 'db_connection.php'; ?>
 
   <div class="hidden sm:block" aria-hidden="true">
@@ -17,20 +17,32 @@
   <div class="mt-10 sm:mt-0">
     <div class="md:grid md:grid-cols-3 md:gap-6">
       <div class="md:col-span-1">
-        <div class="px-4 sm:px-0">
+        <div class="pl-2">
           <h3 class="text-lg font-medium leading-6 text-gray-900">Personal Information</h3>
           <p class="mt-1 text-sm text-slate-600">Enter your personal information</p>
-        </div> <br>
+        </div> <br> 
+        <div class="pl-2">
+          <a href="list.php" class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-orange-600 border border-transparent rounded-md shadow-sm hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"> List</a>
+        </div>
+               
       </div>
       <?php
       $showMsg = false;
       if (!$_POST) {
         $fname = $lname = $email = $phone = $street = $city = $state = $zip = $hobbie = $dob = '';
+        
+        if (isset($_GET['action']))
+          $action = $_GET['action'];
+        else
+          $action = '';
+
         if (isset($_GET['id']))
           $id = $_GET['id'];
         else
           $id = '';
-        if ($id != '') {
+
+        if ($id != '') 
+        {
           $query = "select * from users where id=$id";
           $result = mysqli_query($conn, $query);
           $rows = mysqli_fetch_assoc($result);
@@ -47,8 +59,11 @@
           $dob = $rows['dob'];
           $country = $rows['country_code'];
         }
+
       ?>
-        <div class="mt-5 md:col-span-2 md:mt-0">
+       
+        <div class="mt-5 md:col-span-2 md:mt-0">   
+             
           <form id="form1" method="POST" action="Index.php">
             <div class="overflow-hidden shadow sm:rounded-md">
               <div class="px-4 py-5 bg-white sm:p-6">
@@ -120,9 +135,8 @@
                 </div>
               </div>
               <div class="px-4 py-3 text-right bg-gray-50">
-                <input type="hidden" id="hidden" name="id" value="<?php echo $id ?>">
-                <a href="table.php" class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"> Table</a>
-                <input type="button" id="submit_button" onclick="submitFn()" class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" value="Submit" name="form_submit">
+                <input type="hidden" id="hidden" name="id" value="<?php echo $id ?>">              
+                <input type="button" id="submit_button" onclick="submitFn()" class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2" value="Submit" name="form_submit">
               </div>
             </div>
           </form>
@@ -182,7 +196,8 @@
           $msgClr = 'text-red-700';
           $msgBorder = ' border-red-400';
         }
-      } else {
+      }      
+      else {
         $sql = "UPDATE users SET first_name = '$fname',last_name='$lname',address='$street', city='$city',state='$state',zip_code='$zip',hobbies='$hobbie',dob='$dob',country_code='$country' where id= $id";
         //echo $sql; exit;
         if (mysqli_query($conn, $sql)) {
